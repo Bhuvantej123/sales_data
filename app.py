@@ -143,7 +143,7 @@ with col1:
     st.subheader("📈 Monthly Sales Trend")
     if 'Sales' in filtered_df.columns:
         # Prepare monthly data
-        monthly_sales = filtered_df.set_index('Order Date').resample('M')['Sales'].sum().reset_index()
+        monthly_sales = filtered_df.set_index('Order Date').resample('ME')['Sales'].sum().reset_index()
         
         fig, ax = plt.subplots(figsize=(10, 5))
         fig.patch.set_facecolor('#0e1117')
@@ -174,7 +174,7 @@ with col2:
         ax.set_facecolor('#0e1117')
         
         colors = sns.color_palette("viridis", len(category_profit))
-        sns.barplot(data=category_profit, x='Category', y='Profit', palette=colors)
+        sns.barplot(data=category_profit, x='Category', y='Profit', palette=colors, hue='Category', legend=False)
         
         ax.tick_params(colors='#f0f6fc', which='both')
         ax.xaxis.label.set_color('#f0f6fc')
